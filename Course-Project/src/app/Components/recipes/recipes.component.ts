@@ -11,4 +11,9 @@ import { RecipesService } from './recipes.service';
 export class RecipesComponent {
 selectedRecipe: Recipe;
 
+constructor(private rService: RecipesService){}
+
+ngOnInit(): void {
+  this.rService.recipeSElected.subscribe((recipe:Recipe) =>{this.selectedRecipe = recipe})
+}
 }
