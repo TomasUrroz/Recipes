@@ -1,18 +1,18 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import {Injectable } from '@angular/core';
 import { Ingridient } from '../Shared/ingridient.model';
-
+import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
-  ingreidientsChanged = new EventEmitter<Ingridient[]>()
+  ingreidientsChanged = new Subject<Ingridient[]>()
   constructor() { }
 
   ingridients: Ingridient[] = [new Ingridient("Apples", 5), new Ingridient("Tomatoes", 2) ]
 
   onIngridientAdded(ingridient:Ingridient){
     this.ingridients.push(ingridient);
-    this.ingreidientsChanged.emit(this.ingridients.slice())
+    this.ingreidientsChanged.next(this.ingridients.slice())
   }
 
   getIngridients(){
@@ -21,6 +21,6 @@ export class ShoppingListService {
 
   addIngridients(ingridients: Ingridient[]){
     this.ingridients.push(...ingridients)
-    this.ingreidientsChanged.emit(this.ingridients.slice())
+    this.ingreidientsChanged.next(this.ingridients.slice())
   }
 }
