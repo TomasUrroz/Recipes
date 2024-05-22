@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './Components/recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './Components/recipes/recipe-edit/recipe-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecipesService } from './Components/recipes/recipes.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     provideClientHydration(),
-    ShoppingListService
+    ShoppingListService,
+    RecipesService
   ],
   bootstrap: [AppComponent]
 })
