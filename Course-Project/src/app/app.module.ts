@@ -16,6 +16,8 @@ import { RecipeStartComponent } from './Components/recipes/recipe-start/recipe-s
 import { RecipeEditComponent } from './Components/recipes/recipe-edit/recipe-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipesService } from './Components/recipes/recipes.service';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,14 @@ import { RecipesService } from './Components/recipes/recipes.service';
     RecipesComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(),

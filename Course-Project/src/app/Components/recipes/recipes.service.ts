@@ -10,22 +10,9 @@ import { Subject } from 'rxjs';
 export class RecipesService {
   recipesChanged = new Subject<Recipe[]>();
 
-  constructor(private slService: ShoppingListService) {}
+  private recipes: Recipe[] = [];
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Test',
-      'test d',
-      'https://www.eatingwell.com/thmb/yMc-omrZge4WvdofEtjNWSVHG10=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Chicken-piccata-casserole-3x2-167-f44730f489cc4b9493547de1c76a3b93.jpg',
-      [new Ingredient('Meat', 1), new Ingredient('xd', 5)]
-    ),
-    new Recipe(
-      'Testito',
-      'tes',
-      'https://hips.hearstapps.com/hmg-prod/images/goulash-vertical-64de8d216ea51.jpg',
-      [new Ingredient('Meat', 41), new Ingredient('xdddd', 25)]
-    ),
-  ];
+  constructor(private slService: ShoppingListService) {}
 
   getRecipes() {
     return this.recipes.slice();
@@ -49,8 +36,13 @@ export class RecipesService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  deleteRecipe(index:number){
-    this.recipes.splice(index,1);
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
   }
 }
